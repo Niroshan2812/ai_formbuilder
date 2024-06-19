@@ -5,7 +5,7 @@ export default defineConfig({
   out: "./drizzle",
   dialect: 'postgresql',
   dbCredentials: {
-   url: 'Edit THis one with your owan string',
+   url: 'postgresql://AiFormGen_owner:ciJW1OBbjhM7@ep-dry-cherry-a5vf2nnu.us-east-2.aws.neon.tech/AIFormBuilder?sslmode=require',
    
     
   }

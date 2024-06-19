@@ -24,7 +24,7 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#E17F81",
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -73,8 +73,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), 
-
-    require('daisyui'),
-  ],
+  plugins: [require("tailwindcss-animate")],
 }
