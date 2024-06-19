@@ -1,34 +1,71 @@
-import React from 'react'
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
-  
+"use client";
 
-  
+import React, { useState } from "react";
+
 function CreateForm() {
+  const [userInput, setUserInput] = useState("");
+
+  const onCreateForm = () => {
+    //console.log(userInput)
+
+  };
+  const handleClear = ()=> {
+    setUserInput("");
+    //console.log("Click clear button")
+  };
+
+
+  const handleChanges = (event0)=>{
+    setUserInput(event0.target.value);
+    //console.log("Text area chahc");
+  };
+
   return (
     <div>
+      <dev className="ml-7">+ Create New Form</dev>
+      <div>
+        <label htmlFor="OrderNotes" className="sr-only">
+          Create Form
+        </label>
 
-<Dialog asChild>
-  <DialogTrigger><button className="btn  mr-8">+ Create form</button></DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </DialogDescription>
-    </DialogHeader>
-  </DialogContent>
-</Dialog>
+        <div
+          className=" rounded-lg border border-gray-50 shadow-sm
+     focus-within:border-blue-300 focus-within:ring-1 focus-within:ring-blue-300 flex ml-40 
+     mr-40 mt-5"
+        >
+          <textarea
+            id="OrderNotes"
+            className="w-full resize-none border-none align-top focus:ring-0 sm:text-sm"
+            rows="4"
+            placeholder="Tell some thing about your form "
+            value={userInput}
+            onChange={handleChanges}
+            //onChange={(enent) => setUserInput(enent.target.value)}
+          ></textarea>
 
+          <div className="flex items-center justify-end gap-2 bg-white p-3">
+            <button
+              type="button"
+              onClick={handleClear}
+              className="rounded bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700
+               hover:text-gray-600"
+            >
+              Clear
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onCreateForm()}
+              className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-medium
+               text-white hover:bg-indigo-700"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default CreateForm
+export default CreateForm;

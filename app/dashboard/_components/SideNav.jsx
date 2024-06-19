@@ -42,8 +42,8 @@ useEffect(()=>{
         {menuList.map((menu) =>
            <h2
            key={menu.id}
-           className={`flex items-center gap-3 p-4 mb-3 hover:bg-red-300 hover:text-white rounded-lg cursor-pointer
-             text-gray-50 ${path == menu.path&& 'bg-primary text-white'}`}
+           className={`flex items-center gap-3 p-4 mb-3 hover:bg-red-300 hover:text-slate-800 rounded-lg cursor-pointer
+             text-gray-500 ${path == menu.path&& 'bg-primary text-100'}`}
          >
             <menu.icon />
             {menu.name}
@@ -51,13 +51,13 @@ useEffect(()=>{
         )}
       </div>
       <div className='fixed bottom-7 p-6 w-80'>
-      <button className="btn w-70 bg-red-300 text-slate-50"> + Create Form</button>
+      <button className="btn w-70  text-slate-600"> + Create Form</button>
       <div className='my-7'>
         
-      <progress className="progress w-56 bg-red-300" value="10" max="100"></progress>
-      <h2 className='text-slate-200 my-3'> <strong>2</strong> out of <strong>3</strong> file created</h2>
+      <progress className="progress w-56 rounded-lg " value="10" max="100"></progress>
+      <h2 className='text-slate-600 my-3'> <strong>2</strong> out of <strong>3</strong> file created</h2>
 
-      <h2 className='text-slate-200 my-2 text-sm w-56'> Upgrade your plan to unlimited  frorm</h2>
+      <h2 className='text-slate-600 my-2 text-sm w-56'> Upgrade your plan to unlimited  frorm</h2>
       
       
 
