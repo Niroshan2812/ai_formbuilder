@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import {AiChatSession} from '../../../configs/AiModel'
 
-function CreateForm() {
+const PROMPT = "On the basis of description please give form in JSON forma with form title, form subhedding, with form having Form feild, form name, paceholder name , and form lable, fiels type, field required in JSON format ";
+
+async function CreateForm() {
   const [userInput, setUserInput] = useState("");
 
   const onCreateForm = () => {
@@ -19,6 +22,9 @@ function CreateForm() {
     setUserInput(event0.target.value);
     //console.log("Text area chahc");
   };
+
+
+  const result = await AiChatSession.sendMessage("Description: "+ userInput + PROMPT)
 
   return (
     <div>
