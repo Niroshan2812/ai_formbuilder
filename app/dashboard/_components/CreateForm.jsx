@@ -31,15 +31,19 @@ function CreateForm() {
     );
 
     if (result.response.text()) {
+      //Add data into db
       const resp = await db
         .insert(FsonFoms)
         .values({
           jsonform: result.response.text(),
           createdBy: user?.primaryEmailAddress?.emailAddress,
+          //used i moment library for dormat this 
           createdAt: moment().format("DD/MM/yyyy"),
         })
+        // fsonFrom come from shema
         .returning({ id: FsonFoms.id });
       console.log("New Created form ", resp);
+      
       setloading(false);
     }
     setloading(false);
