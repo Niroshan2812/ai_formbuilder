@@ -1,9 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { AiChatSession } from '../../../configs/AiModel'
+import { AiChatSession } from "../../../configs/AiModel";
+import { useUser } from "@clerk/nextjs";
+import { db } from "../../../configs/index";
+import moment from "moment";
+import {FsonFoms} from "../../../configs/schema"
 
-const PROMPT = "Based on the following description, generate a form in JSON format. The JSON should include:\n\
+const PROMPT =
+  "Based on the following description, generate a form in JSON format. The JSON should include:\n\
 - formTitle: The title of the form\n\
 - formSubheading: The subheading of the form\n\
 - formFields: An array of form fields, where each field has:\n\
@@ -12,17 +17,32 @@ const PROMPT = "Based on the following description, generate a form in JSON form
   - label: The label for the field\n\
   - fieldType: The type of the field (e.g., text, number, email)\n\
   - required: A boolean indicating if the field is required\n\n\
-The response should be in JSON format only. Do not ask for additional information. Use the provided description to generate the form.\n\n\
+and is thire have more thing need add bace on description feel free to add those,  t he response should be in JSON format only. Do not ask for additional information. Use the provided description to generate the form.\n\n\
 Description: ";
 
 function CreateForm() {
   const [userInput, setUserInput] = useState("");
+  const [loding, setloading] = useState();
+  const { user } = useUser();
 
   const onCreateForm = async () => {
-    console.log(userInput);
+    const result = await AiChatSession.sendMessage(
+      "Description:" + userInput + PROMPT
+    );
 
-    const result = await AiChatSession.sendMessage("Description:"+userInput+PROMPT);
-    console.log(result.response.text());
+    if (result.response.text()) {
+      const resp = await db
+        .insert(FsonFoms)
+        .values({
+          jsonform: result.response.text(),
+          createdBy: user?.primaryEmailAddress?.emailAddress,
+          createdAt: moment().format("DD/MM/yyyy"),
+        })
+        .returning({ id: FsonFoms.id });
+      console.log("New Created form ", resp);
+      setloading(false);
+    }
+    setloading(false);
   };
 
   const handleClear = () => {
@@ -70,6 +90,7 @@ function CreateForm() {
             <button
               type="button"
               onClick={onCreateForm}
+              disabled={loding}
               className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-medium
                text-white hover:bg-indigo-700"
             >
