@@ -7,6 +7,7 @@ import { and, eq } from "drizzle-orm";
 import { useUser } from "@clerk/nextjs";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import FormUI from '../_components/FormUI'
 
 
 function EditForm({ params }) {
@@ -64,8 +65,8 @@ onClick={()=> router.back()}
             Controller
             
         </dev>
-        <dev className="md:col-span-2 border rounded-lg p-4 h-screen">
-            Form
+        <dev className="md:col-span-2 border rounded-lg p-5 h-screen flex items-center justify-center">
+            <FormUI jsonForm = {jsonForm}/>
         </dev>
       </dev>
     </dev>
