@@ -19,6 +19,7 @@ const PROMPT =
   - label: The label for the field\n\
   - fieldType: The type of the field (e.g., text, number, email)\n\
   - required: A boolean indicating if the field is required\n\n\
+  - After adding infomation add some statment with check box to conform it\n\
 and is thire have more thing need add bace on description feel free to add those,  t he response should be in JSON format only. Do not ask for additional information. Use the provided description to generate the form.\n\n\
 Description: ";
 
