@@ -21,6 +21,9 @@ function EditForm({ params }) {
 
   //Edit Form Update
   const [updateTigger,setUpdateTrigger] = useState();
+  
+  //store jsonformID
+  const[record,setRecord] = useState();
 
   //to get form id and get an idea what tyoe of style need to add
 
@@ -46,6 +49,7 @@ function EditForm({ params }) {
         // Cleane Json String
         const clenedData = rawData.replace(/```json|```/g, "").trim();
         console.log("Cleaned JSON:", clenedData);
+        setRecord(result[0]);
         setjsonForm(JSON.parse(clenedData));
       } else {
         console.error("No data found");
@@ -56,7 +60,12 @@ function EditForm({ params }) {
   };
 
   useEffect(()=>{
-    setjsonForm(jsonForm);
+    if(updateTigger){
+      setjsonForm(jsonForm);
+     
+      updateJSONForminDB();
+    }
+   
   },[updateTigger])
     // for update edit field valiue and place holder value 
     const onFieldUpdate=(value, index) =>{
@@ -64,6 +73,16 @@ function EditForm({ params }) {
      jsonForm.formFields[index].label = value.label;
      jsonForm.formFields[index].placeholder = value.placeholder;
       setUpdateTrigger(Date.now())
+    }
+
+    const updateJSONForminDB = async()=>{
+      const result = await db.update(FsonFoms)
+      .set({
+        
+        jsonform:jsonForm
+      }).where(and(eq(FsonFoms.id,record.id ),
+      eq(FsonFoms.createdBy,user?.primaryEmailAddress.emailAddress)));
+      console.log('RESULT IS :     - ',result);
     }
 
 
