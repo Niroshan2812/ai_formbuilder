@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Heder from "./_components/heder"
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster, toast } from 'sonner';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         
         <Heder/>
+        <Toaster />
         {children}
 
 

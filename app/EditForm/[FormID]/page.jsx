@@ -85,6 +85,7 @@ function EditForm({ params }) {
       }).where(and(eq(FsonFoms.id,record.id ),
       eq(FsonFoms.createdBy,user?.primaryEmailAddress.emailAddress)));
       //console.log('RESULT IS :     - ',result);
+      toast('Updated')
     }
 // for delete data from db
 const deleteField=(indexToRemove)=>{
