@@ -1,7 +1,12 @@
 import React from "react";
 import FieldEdit from "./FieldEdit";
 
-function FormUI({ jsonForm }) {
+
+
+function FormUI({ jsonForm,onFieldUpdate }) {
+
+
+
   return (
     <div className="border p-5 md:w-[600px]">
       <h2 className="font-bold text-center text-2xl text-sky-700">
@@ -13,7 +18,7 @@ function FormUI({ jsonForm }) {
 
       {jsonForm?.formFields?.length > 0 ? (
         jsonForm.formFields.map((field, index) => (
-          <div key={index} className="flex">
+          <div key={index} className="flex items-center gap-2">
             {field.fieldType === "select" ? (
               <div className="my-3 w-full">
                 <label className="text-lg flex gap-4 my-2">{field.label}</label>
@@ -62,7 +67,6 @@ function FormUI({ jsonForm }) {
                     <h2>{field.label}</h2>
                   </div>
                 )}
-               
               </dev>
             ) : (
               <div key={index} className="my-3 w-full">
@@ -77,7 +81,9 @@ function FormUI({ jsonForm }) {
             )}
 
             <div>
-              <FieldEdit />
+              <FieldEdit defaultValue = {field}
+              ontimeupdate={(value)=>onFieldUpdate(value,index)}
+              />
             </div>
           </div>
         ))

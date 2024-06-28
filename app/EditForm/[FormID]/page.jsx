@@ -19,6 +19,9 @@ function EditForm({ params }) {
   //get back to previous window 
   const router = useRouter();
 
+  //Edit Form Update
+  const [updateTigger,setUpdateTrigger] = useState();
+
   //to get form id and get an idea what tyoe of style need to add
 
   useEffect(() => {
@@ -52,6 +55,18 @@ function EditForm({ params }) {
     }
   };
 
+  useEffect(()=>{
+    setjsonForm(jsonForm);
+  },[updateTigger])
+    // for update edit field valiue and place holder value 
+    const onFieldUpdate=(value, index) =>{
+    
+     jsonForm.formFields[index].label = value.label;
+     jsonForm.formFields[index].placeholder = value.placeholder;
+      setUpdateTrigger(Date.now())
+    }
+
+
   return (
     <dev className="p-10">
 <h2 className="flex gap-2 items-center my-5 cursor-pointer hover:font-bold"
@@ -66,7 +81,9 @@ onClick={()=> router.back()}
             
         </dev>
         <dev className="md:col-span-2 border rounded-lg p-5 h-screen flex items-center justify-center">
-            <FormUI jsonForm = {jsonForm}/>
+            <FormUI jsonForm = {jsonForm}
+            onFieldUpdate={onFieldUpdate}
+            />
         </dev>
       </dev>
     </dev>
