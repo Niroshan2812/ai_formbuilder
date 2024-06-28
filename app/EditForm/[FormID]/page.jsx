@@ -8,6 +8,8 @@ import { useUser } from "@clerk/nextjs";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import FormUI from '../_components/FormUI'
+import { index } from "drizzle-orm/mysql-core";
+import { Toaster, toast } from 'sonner';
 
 
 function EditForm({ params }) {
@@ -82,9 +84,14 @@ function EditForm({ params }) {
         jsonform:jsonForm
       }).where(and(eq(FsonFoms.id,record.id ),
       eq(FsonFoms.createdBy,user?.primaryEmailAddress.emailAddress)));
-      console.log('RESULT IS :     - ',result);
+      //console.log('RESULT IS :     - ',result);
     }
-
+// for delete data from db
+const deleteField=(indexToRemove)=>{
+  const result = jsonForm.formFields.filter((item,index)=>index != indexToRemove);
+  jsonForm.formFields=result;
+  setUpdateTrigger(Date.now());
+}
 
   return (
     <dev className="p-10">
@@ -102,7 +109,9 @@ onClick={()=> router.back()}
         <dev className="md:col-span-2 border rounded-lg p-5 h-screen flex items-center justify-center">
             <FormUI jsonForm = {jsonForm}
             onFieldUpdate={onFieldUpdate}
+            deleteField ={(index)=> deleteField(index)}
             />
+            
         </dev>
       </dev>
     </dev>

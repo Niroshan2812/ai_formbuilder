@@ -3,7 +3,7 @@ import FieldEdit from "./FieldEdit";
 
 
 
-function FormUI({ jsonForm,onFieldUpdate }) {
+function FormUI({ jsonForm,onFieldUpdate ,deleteField}) {
 
 
 
@@ -83,6 +83,7 @@ function FormUI({ jsonForm,onFieldUpdate }) {
             <div>
               <FieldEdit defaultValue = {field}
               ontimeupdate={(value)=>onFieldUpdate(value,index)}
+              deleteField={()=>deleteField(index)}
               />
             </div>
           </div>
