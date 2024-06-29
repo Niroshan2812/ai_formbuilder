@@ -1,3 +1,14 @@
+2024-6-29
+I push this project
+In this stage i need to add styling part into form (Stying part is user respective )
+In here backend part is also applied including db functionlity, AI Form generation part,(get data using JSON format )  etc. 
+final editing file is - FormUI.jsx, page.jsx, Controller.jsx 
+-------------------------------------------------------------------------------------
+=> Stating point is appling a theme for form. 
+  -- if the user click  a theme selector button  user can be able to see diffrant themes then user can be able 
+      to apply that themes into his form 
+------------------------------------------------------------------------------------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
