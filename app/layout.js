@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster, toast } from 'sonner';
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

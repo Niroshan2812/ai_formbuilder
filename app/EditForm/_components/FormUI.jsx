@@ -3,12 +3,13 @@ import FieldEdit from "./FieldEdit";
 
 
 
+
 function FormUI({ jsonForm,onFieldUpdate ,deleteField}) {
 
 
 
   return (
-    <div className="border p-5 md:w-[800px] md:h-[800px] overflow-auto">
+    <div className="border p-5 md:w-[800px] md:h-[800px] overflow-auto " >
       <h2 className="font-bold text-center text-2xl text-sky-700">
         {jsonForm?.formTitle}
       </h2>

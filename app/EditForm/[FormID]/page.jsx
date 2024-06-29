@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import FormUI from '../_components/FormUI'
 import { index } from "drizzle-orm/mysql-core";
 import { Toaster, toast } from 'sonner';
+import Controller from '../_components/Controller'
 
 
 function EditForm({ params }) {
@@ -26,6 +27,9 @@ function EditForm({ params }) {
   
   //store jsonformID
   const[record,setRecord] = useState();
+
+  //For them selection 
+  const [selectedTheme, setSelectedTheme]=useState('light');
 
   //to get form id and get an idea what tyoe of style need to add
 
@@ -94,6 +98,8 @@ const deleteField=(indexToRemove)=>{
   setUpdateTrigger(Date.now());
 }
 
+
+
   return (
     <dev className="p-10">
 <h2 className="flex gap-2 items-center my-5 cursor-pointer hover:font-bold"
@@ -104,11 +110,12 @@ onClick={()=> router.back()}
 
       <dev className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <dev className="p-5 border rounded-lg shadow-md">
-            Controller
+            <Controller  />
             
         </dev>
         <dev className="md:col-span-2 border rounded-lg p-5 h-screen flex items-center justify-center">
             <FormUI jsonForm = {jsonForm}
+            
             onFieldUpdate={onFieldUpdate}
             deleteField ={(index)=> deleteField(index)}
             />
