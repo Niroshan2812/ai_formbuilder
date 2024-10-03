@@ -11,7 +11,7 @@
     "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.1.5",
+    "@clerk/nextjs": "^5.7.1",
     "@google/generative-ai": "^0.13.0",
     "@neondatabase/serverless": "^0.9.3",
     "@nextui-org/popover": "^2.1.24",
